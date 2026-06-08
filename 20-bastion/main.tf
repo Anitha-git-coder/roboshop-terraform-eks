@@ -1,0 +1,29 @@
+resource "aws_instance" "bastion" {
+    ami= local.ami_id
+    instance_type="t3.micro"
+    vpc_security_group_ids = [local.bastion_sg_id]
+    subnet_id = local.public_subnet_id
+    
+    # iam_instance_profile=aws_iam_instance_profile.bastion.name
+    
+    root_block_device {
+    volume_size           = 50        # size in GB
+    volume_type           = "gp3"     # gp2, gp3, io1, etc.
+    }
+
+    user_data = file("bastion.sh")
+    
+    tags = merge (
+        local.common_tags,
+        {
+            Name="${var.project_name}-${var.environment}-bastion"
+        }
+    )
+  
+}
+
+resource "aws_iam_instance_profile" "bastion" {
+  name = "bastion"
+  role = "BastionTerraformAdmin"
+
+}
