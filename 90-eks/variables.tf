@@ -1,17 +1,17 @@
 variable "project_name" {
-    default = "roboshop"
+  default = "roboshop"
 }
 
 variable "environment" {
-    default = "dev"
+  default = "dev"
 }
 
 variable "zone_id" {
-    default = "Z08957613Q2VP6KYK490C"
+  default = "Z08957613Q2VP6KYK490C"
 }
 
 variable "domain_name" {
-    default = "anitha.fun"
+  default = "anitha.fun"
 }
 
 variable "eks_version" {
@@ -26,10 +26,10 @@ variable "eks_nodegroup_green_version" {
 
 }
 
-variable enable_blue {
+variable "enable_blue" {
 
 }
 
-variable enable_green {
-    
+variable "enable_green" {
+
 }
